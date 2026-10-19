@@ -2,11 +2,22 @@ F.txt, H.txt match their descriptions (75 and 121 sets)
 F: 75 distinct members, Sperner, 3-sunflower-free (exhaustive)
 H: 121 distinct members, Sperner, 3-sunflower-free (exhaustive)
 B: 4349 distinct members, Sperner, 3-sunflower-free (exhaustive)
-  (9s)
+  (8s)
 B.txt = DEGKM gluing of F (point 2) and H (point 0), 4349 sets on 19 points
 N[a][b] = #{D: [0 in D]=a, [1 in D]=b} = [[622, 1123], [1123, 1481]]  T_B = [[N10,N11],[N00,N01]] = [[1123, 1481], [622, 1123]]
 rho(T_B) = (2246 + sqrt(3684728))/2 >= 2082.7822669752;  record rho0 = 1042+2*sqrt(261207) <= 2064.1682836011
 exact: 1123 + sqrt(921182) > 1042 + 2*sqrt(261207); both chains add 17 points per period
 rate rho(T_B)^(1/17) ~ 1.5675245286  vs record 1.5666969788
 two-copy chain: 9087960 members = (u,w)·T·1 with (u,w)=(1745,2604)
+Part I (step 1) done  (9s)
+(7) block checker = brute force on 180 random test families (outcomes (Sperner, free): {'(True, True)': 104, '(True, False)': 60, '(False, True)': 14, '(False, False)': 2}); on B: (True, True)  (1s)
+(8) gadget built by gadget.py: 250659 distinct sets on 28 points, sha256(canonical text) = 4ada967cda0b447dd71a541b5d0bb6705e9ee2ab0f1111ff532eb60ec2c01b81
+gadget: 250659 distinct members; 70 P0-projections, 75 rectangles; Sperner=True, 3-sunflower-free=True (exhaustive, block method)
+    (1s)
+control: gadget built from H + {1 2 3 5 6 8}: 255891 distinct members; 70 P0-projections, 75 rectangles; Sperner=True, 3-sunflower-free=False (exhaustive, block method)
+(9) H at point 0: (avoid, contain) = (46, 75); gadget root: (avoid, contain) = (98308, 152351), explicit = formula
+(10) unit: N00=148811965456 N01=279351870092 N10=279351870092 N11=378843386627;  T = [[N10,N11],[N00,N01]], rho = 279351870092 + sqrt(378843386627*148811965456)
+(11) exact: rho^17 > (1123+sqrt(921182))^60, hence rho^(1/60) > (1123+sqrt(921182))^(1/17) > (1042+2*sqrt(261207))^(1/17)
+     rho = 516789080663.492303;  rate rho^(1/60) = 1.5675517557582  vs step 1 1.5675245285515  vs record 1.5666969787543
+total 11s
 ALL CHECKS PASS
