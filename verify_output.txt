@@ -1,0 +1,12 @@
+F.txt, H.txt match their descriptions (75 and 121 sets)
+F: 75 distinct members, Sperner, 3-sunflower-free (exhaustive)
+H: 121 distinct members, Sperner, 3-sunflower-free (exhaustive)
+B: 4349 distinct members, Sperner, 3-sunflower-free (exhaustive)
+  (9s)
+B.txt = DEGKM gluing of F (point 2) and H (point 0), 4349 sets on 19 points
+N[a][b] = #{D: [0 in D]=a, [1 in D]=b} = [[622, 1123], [1123, 1481]]  T_B = [[N10,N11],[N00,N01]] = [[1123, 1481], [622, 1123]]
+rho(T_B) = (2246 + sqrt(3684728))/2 >= 2082.7822669752;  record rho0 = 1042+2*sqrt(261207) <= 2064.1682836011
+exact: 1123 + sqrt(921182) > 1042 + 2*sqrt(261207); both chains add 17 points per period
+rate rho(T_B)^(1/17) ~ 1.5675245286  vs record 1.5666969788
+two-copy chain: 9087960 members = (u,w)·T·1 with (u,w)=(1745,2604)
+ALL CHECKS PASS

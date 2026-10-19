@@ -1,0 +1,3 @@
+F: members 75 duplicates 0 sperner_violations 0 sunflowers 0
+H: members 121 duplicates 0 sperner_violations 0 sunflowers 0
+B: members 4349 duplicates 0 sperner_violations 0 sunflowers 0
