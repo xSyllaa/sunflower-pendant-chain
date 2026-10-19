@@ -146,9 +146,9 @@ repository's code. Their notes record: F, H and B rebuilt from the descriptions;
 re-proved and its statement checked against the DEGKM paper; B glued to F (157,504 sets on 27 points) and the two-copy
 chain (9,087,960 sets on 36 points) checked exhaustively for Sperner and sunflower-freeness.
 
-Independent reproductions (theorem): two separate fresh-context AI reviewers (a third is pending at the time of
-writing) rebuilt the gadget from the description, obtained the same 250,659 sets, checked it exhaustively for Sperner
-and sunflower-freeness with their own programs (a trie search and a C triple search), and recomputed the root counts,
+Independent reproductions (theorem): three separate fresh-context AI reviewers rebuilt the gadget from the
+description, obtained the same 250,659 sets, checked it exhaustively for Sperner and sunflower-freeness with their own
+programs (a trie search, a C triple search, and a block-wise exact search cross-checked by a per-set search), and recomputed the root counts,
 N_ab and the rate.
 
 ## Credits
@@ -165,6 +165,6 @@ N_ab and the rate.
 ## Status
 
 Not peer-reviewed. The constructions and the checks were produced by an AI agent; step 1 was re-checked by three
-independent AI reviewers, the theorem so far by two. No human mathematician has checked it yet. Corrections are welcome as issues.
+independent AI reviewers, the theorem also by three. No human mathematician has checked it yet. Corrections are welcome as issues.
 
 License: MIT (see LICENSE).
