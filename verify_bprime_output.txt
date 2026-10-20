@@ -1,0 +1,15 @@
+PASS  F rebuilt from definition: 75 sets, equals data/F.txt
+PASS  H rebuilt from definition: 121 sets, equals data/H.txt
+PASS  B (glue) has 4349 sets and is contained in B'
+PASS  B' = B + 15 extra sets, all on points 0..8
+PASS  control: planted sunflower {0,1},{0,2},{0,3} detected
+PASS  control: planted Sperner pair detected
+PASS  control: B' + {19},{20},{21} (planted sunflower, empty core) detected at full size
+PASS  B' exhaustive: 4364 sets, 0 duplicates, 0 Sperner pairs, 0 3-sunflowers (6 s)
+PASS  B' uses exactly the 19 points 0..18
+PASS  T = [[1127,1488],[622,1127]]
+PASS  rho^(1/17) in (1.5678015201, 1.5678015203)
+PASS  exact: 1127+sqrt(925536) > 1042+2*sqrt(261207) [Cla2026, same 17 points]
+PASS  exact: rate > 1.56770 > rho_60^(1/60) [Syl2026 1.5675517557...]
+sha256 data/Bprime.txt: 2a72385704b8203269cda4f4b0dfdabc74d5adb8f4a2bc1dac1f570cb96b5cec
+ALL CHECKS PASS

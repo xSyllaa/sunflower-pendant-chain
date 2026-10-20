@@ -1,24 +1,67 @@
 # A pendant chain for the 3-sunflower-free capacity
 
-**Theorem.** Let f(n) be the largest size of a family of subsets of an n-element set with no three distinct members
-A, B, C such that A∩B = A∩C = B∩C, and let μ₃ = lim f(n)^{1/n} (the Erdős–Szemerédi 3-sunflower-free capacity). Then
+**Theorem (v2, 2026-10-20).** Let f(n) be the largest size of a family of subsets of an n-element set with no three
+distinct members A, B, C such that A∩B = A∩C = B∩C, and let μ₃ = lim f(n)^{1/n} (the Erdős–Szemerédi 3-sunflower-free
+capacity). Then
 
-  μ₃ ≥ ρ^{1/60} = 1.5675517557…,  ρ = 279351870092 + √(378843386627 · 148811965456).
+  μ₃ ≥ (1127 + √925536)^{1/17} = (1127 + √(1488·622))^{1/17} = 1.5678015201…
 
-The simpler first step (section "Step 1") gives μ₃ ≥ (1123 + √921182)^{1/17} = 1.5675245285…
-
-Both are above the previous best lower bound listed in T. Tao's optimization-constants table (constant 49a),
-(1042 + 2√261207)^{1/17} = 1.5666969787… [Cla2026]. Like the other asterisked rows there, they are limits obtained
+This improves the earlier results of this repository (v1, 2026-10-19), which are kept below and still reproduce:
+μ₃ ≥ ρ^{1/60} = 1.5675517557… (the "unit chain") and μ₃ ≥ (1123 + √921182)^{1/17} = 1.5675245285… ("Step 1"). All are
+above the previous best lower bound listed in T. Tao's optimization-constants table (constant 49a),
+(1042 + 2√261207)^{1/17} = 1.5666969787… [Cla2026]. Like the other asterisked rows there, these are limits obtained
 from an infinite chain; no single finite uniform family of this rate is claimed.
 
-Run `python3 verify.py` (Python 3, standard library only, about 15 seconds). The expected last line is
-`ALL CHECKS PASS`; the output we got is in `verify_output.txt`. `python3 gadget.py --write` writes the explicit
-28-point gadget (250,659 sets, 11.6 MB) to `data/gadget.txt`; its sha256 is
-`4ada967cda0b447dd71a541b5d0bb6705e9ee2ab0f1111ff532eb60ec2c01b81`. Optional second checker for the step-1
-family (naive triple loop, C): `cc -O2 -o sf_tri extra/sf_tri.c && ./sf_tri data/B.txt` (output in
-`extra/sf_tri_output.txt`).
+Run `python3 verify_bprime.py` (Python 3, standard library only, about 6 seconds) for the v2 theorem; expected last
+line `ALL CHECKS PASS`, our output is in `verify_bprime_output.txt`. `python3 verify.py` (about 15 seconds) checks the
+v1 results; its output is in `verify_output.txt`. `sha256sum -c SHA256SUMS` checks the data files. The v1 material is
+unchanged except for this README.
 
-## Step 1: the B-chain, rate 1.5675245
+## The v2 theorem: the B′-chain, rate 1.5678015
+
+**The family B′** (`data/Bprime.txt`, 4364 sets on 19 points, sha256
+`2a72385704b8203269cda4f4b0dfdabc74d5adb8f4a2bc1dac1f570cb96b5cec`) is the 4349-set family B of Step 1 (below; the
+DEGKM gluing of F at its point (0,3) and H at its point 0) plus 15 sets that lie inside the F-part. In B the F-part
+uses points 0–8 = the K₅ edges (0,1),(0,2),(0,4),(1,2),(1,3),(1,4),(2,3),(2,4),(3,4) (edge (0,3) is the glued point)
+and points 9–18 = H's points 1–10. The 15 added sets, as edge sets of K₅ (they contain no H-point):
+
+    (0,2)(0,4)(1,3)(1,4)(2,3)                (0,1)(0,2)(0,4)(1,2)(1,3)(2,3)(2,4)
+    (0,1)(0,2)(1,2)(1,3)(1,4)(2,3)(2,4)      (0,1)(0,4)(1,2)(1,3)(1,4)(2,3)(2,4)
+    (0,1)(0,2)(0,4)(1,2)(1,3)(1,4)(3,4)      (0,1)(0,4)(1,2)(2,3)(3,4)
+    (0,1)(0,2)(1,2)(1,3)(1,4)(2,3)(3,4)      (0,1)(0,2)(1,3)(2,4)(3,4)
+    (0,1)(0,4)(1,2)(1,3)(1,4)(2,4)(3,4)      (0,2)(0,4)(1,2)(1,3)(1,4)(2,4)(3,4)
+    (0,2)(0,4)(1,2)(1,3)(2,3)(2,4)(3,4)      (0,1)(0,2)(0,4)(1,4)(2,3)(2,4)(3,4)
+    (0,1)(0,2)(1,2)(1,4)(2,3)(2,4)(3,4)      (0,2)(0,4)(1,2)(1,4)(2,3)(2,4)(3,4)
+    (0,1)(0,4)(1,3)(1,4)(2,3)(2,4)(3,4)
+
+(They are the last 15 lines of `data/Bprime.txt`.) The only property of B′ that the bound uses is that **B′ is Sperner
+and 3-sunflower-free**, which `verify_bprime.py` checks exhaustively (all pairs; for the sunflower condition, every
+member S_k with every pair of members in the same class of S_i ∩ S_k, which covers all triples). Sperner is not part of
+the definition of μ₃; it is a hypothesis of the gluing lemma, which is why it is checked.
+
+**The chain.** Exactly as in Step 1 (sections below), with B′ in place of B: R₁ = B′ and R_{k+1} = the DEGKM gluing of
+R_k (at point 1 of its last copy) and a fresh copy of B′ (at its point 0). R_k is Sperner and sunflower-free on 17k + 2
+points. The port counts of B′ are N₀₀ = 622, N₀₁ = N₁₀ = 1127, N₁₁ = 1488, so
+
+  (u_{k+1}, w_{k+1}) = (u_k, w_k)·T,  T = [[1127, 1488], [622, 1127]],  (u₁, w₁) = (1749, 2615),
+
+T is positive with Perron root ρ = 1127 + √(1488·622) = 2089.0478158…, |R_k| ≥ cρ^k with c > 0, and since the limit
+μ₃ exists (f is moreover nondecreasing), μ₃ = lim f(17k+2)^{1/(17k+2)} ≥ ρ^{1/17} = 1.5678015201687…
+
+**Comparisons (exact, in `verify_bprime.py`).** Against [Cla2026] (same 17 points per period):
+1127 + √925536 > 1042 + √1044828 ⇔ 85 > √1044828 − √925536, true since ⌊√1044828⌋ + 1 − ⌊√925536⌋ = 1023 − 962 = 61.
+Against v1: ρ^{1/17} > 1.56770 > 1.5675517557… = (v1 Perron root)^{1/60}, both by integer arithmetic.
+
+**Why the 15 sets can be added (explanation only; not needed for the bound).** In H no two distinct members have
+disjoint parts outside point 0, so every two members of B have intersecting H-parts, while an added set T has an empty
+H-part. Hence T cannot lie in a sunflower whose other two members are in B (their intersection would have to equal
+T ∩ X, which has no H-point), and no member of B is contained in T. What remains is that T is not contained in any
+F-part C∖{(0,3)} (C ∈ F) and that the added sets form no sunflower or Sperner pair among themselves and with these
+F-parts. There are 123 single sets with these properties; a CP-SAT search reports that 15 is the largest compatible
+selection, and this selection gives the best port counts. None of this is used in the proof, which rests only on
+the exhaustive check of B′.
+
+## v1, Step 1: the B-chain, rate 1.5675245
 
 ### The construction
 
@@ -85,7 +128,7 @@ nondecreasing and the limit μ₃ exists, μ₃ = lim f(17k+2)^{1/(17k+2)} ≥ �
 1123 + √921182 > 1042 + 2√261207 = 1042 + √1044828, i.e. 81 + √921182 > √1044828. Squaring: 6561 + 921182 + 162√921182
 > 1044828 ⇔ 162√921182 > 117085 ⇔ 162²·921182 = 24175500408 > 117085² = 13708897225. True.
 
-## The theorem: the unit chain, rate 1.5675517
+## v1 theorem: the unit chain, rate 1.5675517
 
 The same lemma glues any tree of families, not only chains. Write w(1) = number of members of the partner family
 *avoiding* its glued point and w(0) = number *containing* it: by the count in the lemma, a member C of the family on
@@ -141,12 +184,12 @@ full-size positive control (the gadget built from H plus one extra set, which it
 10. The unit counts N_ab by the formula above.
 11. The exact integer comparison ρ¹⁷ > (1123 + √921182)⁶⁰.
 
-Independent reproductions (step 1): three separate fresh-context AI reviewers checked the claim without this
+Reproductions (step 1): three separate fresh-context AI reviewers (same pipeline) checked the claim without this
 repository's code. Their notes record: F, H and B rebuilt from the descriptions; T and the exact inequality recomputed; the lemma
 re-proved and its statement checked against the DEGKM paper; B glued to F (157,504 sets on 27 points) and the two-copy
 chain (9,087,960 sets on 36 points) checked exhaustively for Sperner and sunflower-freeness.
 
-Independent reproductions (theorem): three separate fresh-context AI reviewers rebuilt the gadget from the
+Reproductions (unit chain): three separate fresh-context AI reviewers (same pipeline) rebuilt the gadget from the
 description, obtained the same 250,659 sets, checked it exhaustively for Sperner and sunflower-freeness with their own
 programs (a trie search, a C triple search, and a block-wise exact search cross-checked by a per-set search), and recomputed the root counts,
 N_ab and the rate.
@@ -164,7 +207,9 @@ N_ab and the rate.
 
 ## Status
 
-Not peer-reviewed. The constructions and the checks were produced by an AI agent; step 1 was re-checked by three
-independent AI reviewers, the theorem also by three. No human mathematician has checked it yet. Corrections are welcome as issues.
+Not peer-reviewed. The constructions and the checks were produced by an AI agent (Grok Bot) directed by Sylla
+(GitHub: xSyllaa), who takes responsibility for the result. Each result was re-checked by three fresh-context AI
+reviewers (separate sessions of the same agent pipeline, with their own code; they are not independent third-party
+reviewers). No human mathematician has checked the argument yet. Corrections are welcome as issues.
 
 License: MIT (see LICENSE).
